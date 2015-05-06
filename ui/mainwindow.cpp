@@ -23,7 +23,6 @@ tbar->addSeparator();
 tbar->addAction(tr("Удалить"),this,SLOT(erase()));
 tbar->addSeparator();
 tbar->addAction(tr("О программе"),this,SLOT(help()));
-
 this->addToolBar(tbar);
 
 text1 = new QTextEdit;
@@ -63,6 +62,12 @@ void MainWindow::open(){
      text2->setText(in.readAll());
          }
 
+   QDir mDir;
+
+   foreach (QFileInfo mIte, mDir.drives() )
+   {
+   text1->append(mIte.absoluteFilePath());
+   }
 
  }
 void MainWindow::save(){
