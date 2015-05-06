@@ -6,13 +6,14 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QDebug>
+#include <QString>
+#include <QDir>
 
 MainWindow::MainWindow(QWidget *parent) :
 QMainWindow(parent){
 setMinimumSize(640,480);
 
-QToolBar * tbar = new QToolBar;
-tbar = new QToolBar(this);
+tbar = new QToolBar;
 tbar->addAction(tr("Открыть"),this,SLOT(open()));
 tbar->addSeparator();
 tbar->addAction(tr("Сохранить"),this,SLOT(save()));
@@ -23,37 +24,24 @@ tbar->addAction(tr("Удалить"),this,SLOT(erase()));
 tbar->addSeparator();
 tbar->addAction(tr("О программе"),this,SLOT(help()));
 
-    this->addToolBar(tbar);
+this->addToolBar(tbar);
 
-
-//QTextEdit *text = new QTextEdit;
+text1 = new QTextEdit;
 text1= new QTextEdit(this);
 text1->setGeometry(110,30,200,420);
 
 text2 = new QTextEdit;
-//QTextEdit *text1 = new QTextEdit;
 text2= new QTextEdit(this);
 text2->setGeometry(330,30,200,420);
 
-//QVBoxLayout *Layout = new QVBoxLayout;  //здесь я хотел добавить на форму Layout и на нем попытаться распложить текстовые поля
- // Layout->addWidget(textedit);
-
-
-QVBoxLayout *lay = new QVBoxLayout(this);
+lay = new QVBoxLayout(this);
 lay->addWidget(text2);
 
-//QVBoxLayout *lay1 = new QVBoxLayout(this);
-//lay1->addWidget(text1);
+lay1 = new QVBoxLayout(this);
+lay1->addWidget(text1);
 
 
-
-QVBoxLayout *layout = new QVBoxLayout;
-   layout->addWidget(text2);
-  // layout->addWidget(text1);
-  this->setLayout(layout);
-
-
-   setWindowTitle(tr("STM32_DumpEDIT"));
+setWindowTitle(tr("STM32_DumpEDIT"));
 
 }
 
@@ -73,8 +61,8 @@ void MainWindow::open(){
         }
         QTextStream in(&file);
      text2->setText(in.readAll());
-
          }
+
 
  }
 void MainWindow::save(){
@@ -110,6 +98,9 @@ void MainWindow::edit(){
 
 void MainWindow::erase(){
     qDebug()<<"delete";
+
+
+//QFile("").remove();
 
 
 }
